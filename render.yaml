@@ -1,7 +1,7 @@
 databases:
-  - name: mysite
-    databaseName: mysite
-    user: mysite
+  - name: reimbursement_portal_devdb
+    databaseName: reimbursement_portal_devdb
+    user: root
     plan: free
 
 services:
