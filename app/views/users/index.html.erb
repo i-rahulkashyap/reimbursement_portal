@@ -2,21 +2,29 @@
   <thead>
     <tr>
       <th>ID</th>
+      <th>Name</th>
       <th>Email</th>
       <th>Role</th>
       <th>Actions</th>
+      <th>Make Employee</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
         <td><%= user.id %></td>
+        <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.role %></td>
         <td>
           <%= link_to 'Show', user %>
           <%= link_to 'Edit', edit_user_path(user) %>
           <%= link_to 'Destroy', user, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        </td>
+        <td>
+          <% if user.present? %>
+          <%= link_to 'Add to Employee', add_to_employee_user_path(user), class: 'btn btn-primary' %>
+          <% end %>
         </td>
       </tr>
     <% end %>

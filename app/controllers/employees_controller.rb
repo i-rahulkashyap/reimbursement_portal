@@ -2,7 +2,7 @@ class EmployeesController < ApplicationController
   before_action :authenticate_user!
   # before_action :authorize_admin!
   before_action :authorize_employee, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-
+  
   def index
     @employees = Employee.all
   end
@@ -12,7 +12,12 @@ class EmployeesController < ApplicationController
   end
 
   def new
-    @employee = Employee.new
+    if params[:user_id]
+      user = User.find(params[:user_id])
+      @employee = Employee.new(user_id: user.id, email: user.email)
+    else
+      @employee = Employee.new
+    end
   end
 
   def create
@@ -22,7 +27,7 @@ class EmployeesController < ApplicationController
     if @employee.save
       redirect_to employees_path, notice: 'Employee was successfully created.'
     else
-      render :new
+      redirect_to users_path, alert: @employee.errors.full_messages.join(', ')
     end
   end
 

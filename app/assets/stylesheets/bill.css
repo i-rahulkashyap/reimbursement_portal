@@ -1,0 +1,10 @@
+.amount-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.amount-capsule {
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  padding: 5px 15px;
+}

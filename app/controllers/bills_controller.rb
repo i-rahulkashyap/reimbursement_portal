@@ -4,12 +4,15 @@ class BillsController < ApplicationController
   # before_action :authorize_bill, only: [:show, :edit, :update, :destroy, :approve, :reject, :new, :create]
   # after_action :verify_authorized, except: :index
   # after_action :verify_policy_scoped, only: :index
+  before_action :authorize_creation, only: [:new, :create]
   
 
   def index
     # @bills = policy_scope(Bill)
     if current_user.admin?
       @bills = Bill.all
+      @total_submitted = @bills.sum(:amount)
+      @total_approved = @bills.where(status: 'approved').sum(:amount)
     else
       @bills = current_user.bills
     end
@@ -63,9 +66,13 @@ class BillsController < ApplicationController
     @bill = Bill.find(params[:id])
   end
 
-  # def authorize_bill
-  #   authorize @bill || Bill
-  # end
+  def authorize_bill
+    authorize @bill || Bill
+  end
+
+  def authorize_creation
+    redirect_to root_path, alert: 'Access denied!' unless current_user.employee? || current_user.admin?
+  end
 
   def bill_params
     params.require(:bill).permit(:amount, :bill_type, :status)

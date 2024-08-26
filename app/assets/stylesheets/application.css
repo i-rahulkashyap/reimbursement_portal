@@ -1,5 +1,5 @@
 /* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 
 /* Root variables */
 :root {
@@ -14,11 +14,19 @@
 
 /* Global styles */
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: monospace !important;
   background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.6;
 }
+
+.alert-success{
+  color: green;
+}
+.alert-danger{
+  color: red;
+}
+
 
 .container {
   max-width: 1200px;
@@ -266,3 +274,22 @@ body {
   background-color: #f5f5f5;
 }
 
+
+.flash {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.flash.alert {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.flash.notice {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
