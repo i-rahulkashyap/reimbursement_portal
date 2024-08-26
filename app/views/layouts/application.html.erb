@@ -28,29 +28,34 @@
   <% end %>
   
 
-  <header class="site-header">
-  <div class="container">
-    <nav class="site-nav">
-      <a href="/" class="logo">ReimbursementPortal</a>
-      <div class="nav-links">
-        <% if user_signed_in? %>
-          <% if policy(Employee).index? %>
-            <%= link_to 'Employees', employees_path, class: 'nav-link' %>
+ <header class="site-header">
+    <div class="container">
+      <nav class="site-nav">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <a href="/" class="logo">ReimbursementPortal</a>
+        <div class="nav-links">
+          <% if user_signed_in? %>
+            <% if policy(Employee).index? %>
+              <%= link_to 'Employees', employees_path, class: 'nav-link' %>
+            <% end %>
+            <% if policy(Department).index? %>
+              <%= link_to 'Departments', departments_path, class: 'nav-link' %>
+            <% end %>
+            <% if policy(Bill).index? %>
+              <%= link_to 'Bills', bills_path, class: 'nav-link' %>
+            <% end %>
+            <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to sign-out?" }, class: 'button' %>
+          <% else %>
+            <%= link_to "Sign In", new_user_session_path, class: 'nav-link' %>
+            <%= link_to "Sign Up", new_user_registration_path, class: 'button' %>
           <% end %>
-          <% if policy(Department).index? %>
-            <%= link_to 'Departments', departments_path, class: 'nav-link' %>
-          <% end %>
-          <% if policy(Bill).index? %>
-            <%= link_to 'Bills', bills_path, class: 'nav-link' %>
-          <% end %>
-          <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to sign-out?" }, class: 'button' %>
-        <% else %>
-          <%= link_to "Sign In", new_user_session_path, class: 'nav-link' %>
-          <%= link_to "Sign Up", new_user_registration_path, class: 'button' %>
-        <% end %>
-      </div>
-    </nav>
-  </div>
+        </div>
+      </nav>
+    </div>
   </header>
 
   <main class="site-main">
