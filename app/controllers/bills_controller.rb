@@ -9,13 +9,9 @@ class BillsController < ApplicationController
 
   def index
     # @bills = policy_scope(Bill)
-    if current_user.admin?
-      @bills = Bill.all
-      @total_submitted = @bills.sum(:amount)
-      @total_approved = @bills.where(status: 'approved').sum(:amount)
-    else
-      @bills = current_user.bills
-    end
+    @bills = current_user.admin? ? Bill.all : current_user.bills
+    @total_submitted = @bills.sum(:amount)
+    @total_approved = @bills.where(status: 'approved').sum(:amount)
   end
 
   def show; end
