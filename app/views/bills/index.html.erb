@@ -1,4 +1,11 @@
-<h1>Bills</h1>
+<div class="row">
+  <div class="column column-50">
+    <h1>Bills</h1>
+  </div>
+  <div class="column column-50 text-right">
+    <%= link_to 'New Bill', new_bill_path, class: 'button button-outline' %>
+  </div>
+</div>
 <table class="table-with-borders">
   <thead>
     <tr>
@@ -29,4 +36,3 @@
     <% end %>
   </tbody>
 </table>
-<%= link_to 'New Bill', new_bill_path %>
