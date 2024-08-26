@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="column column-50">
+    <h1>Employees</h1>
+  </div>
+  <div class="column column-50 text-right">
+    <%= link_to 'New Employee', new_employee_path, class: 'button button-outline' %>
+  </div>
+</div>
+
+<table class="table-with-borders">
+  <thead>
+    <tr>
+      <th> ID </th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Designation</th>
+      <th>Department</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.id %></td>
+        <td><%= employee.first_name %></td>
+        <td><%= employee.last_name %></td>
+        <td><%= employee.email %></td>
+        <td><%= employee.designation %></td>
+        <td><%= employee.department.name %></td>
+        <td>
+          <%= link_to 'Show', employee_path(employee) %>
+          <%= link_to 'Edit', edit_employee_path(employee) %>
+          <%= link_to 'Destroy', employee_path(employee),data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="column column-50">
+    <h1>Departments</h1>
+  </div>
+  <div class="column column-50 text-right">
+    <%= link_to 'New Department', new_department_path, class: 'button button-outline' %>
+  </div>
+</div>
+
+<table class="table-with-borders">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @departments.each do |department| %>
+      <tr>
+        <td><%= department.name %></td>
+        <td>
+          <%= link_to 'Show', department %>
+          <%= link_to 'Edit', edit_department_path(department) %>
+          <%= link_to 'Destroy', department, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

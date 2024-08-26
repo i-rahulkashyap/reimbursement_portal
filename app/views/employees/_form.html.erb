@@ -1,0 +1,50 @@
+<%= form_with(model: @employee, local: true) do |form| %>
+  <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+      <ul>
+        <% @employee.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <div class="row">
+      <div class="column">
+        <%= form.label :first_name %>
+        <%= form.text_field :first_name, class: "u-full-width" %>
+      </div>
+      <div class="column">
+        <%= form.label :last_name %>
+        <%= form.text_field :last_name, class: "u-full-width" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <%= form.label :email %>
+        <%= form.email_field :email, class: "u-full-width" %>
+      </div>
+      <div class="column">
+        <%= form.label :designation %>
+        <%= form.text_field :designation, class: "u-full-width" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <%= form.label :department_id %>
+        <%= form.collection_select :department_id, Department.all, :id, :name, {}, { class: "u-full-width" } %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <%= form.submit @employee.new_record? ? "Create Employee" : "Update Employee", class: "button-primary" %>
+        <%= link_to 'Cancel', @employee, class: "button button-outline" %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

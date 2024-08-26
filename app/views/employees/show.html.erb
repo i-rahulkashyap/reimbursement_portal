@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>Employee Details</h1>
+
+  <div class="row">
+    <div class="column column-50">
+      <table class="table-with-borders">
+        <tr>
+          <th>First Name:</th>
+          <td><%= @employee.first_name %></td>
+        </tr>
+        <tr>
+          <th>Last Name:</th>
+          <td><%= @employee.last_name %></td>
+        </tr>
+        <tr>
+          <th>Email:</th>
+          <td><%= @employee.email %></td>
+        </tr>
+        <tr>
+          <th>Designation:</th>
+          <td><%= @employee.designation %></td>
+        </tr>
+        <tr>
+          <th>Department:</th>
+          <td><%= @employee.department.name %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <%= link_to 'Edit', edit_employee_path(@employee), class: 'button button-outline' %>
+      <%= link_to 'Back', employees_path, class: 'button button-clear' %>
+    </div>
+  </div>
+</div>

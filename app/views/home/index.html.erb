@@ -1,0 +1,37 @@
+<%= stylesheet_link_tag "home" %>
+
+
+<section class="hero">
+  <h1>Welcome to ReimbursementPortal</h1>
+  <p>Simplify your expense management with our easy-to-use reimbursement system.</p>
+  <% unless user_signed_in? %>
+    <%= link_to "Get Started", new_user_registration_path, class: "cta-button" %>
+  <% end %>
+</section>
+
+<section class="features">
+  <div class="feature">
+    <i class="fas fa-file-invoice-dollar"></i>
+    <h3>Easy Submission</h3>
+    <p>Submit your expenses quickly and easily through our intuitive interface.</p>
+  </div>
+  <div class="feature">
+    <i class="fas fa-chart-line"></i>
+    <h3>Track Progress</h3>
+    <p>Monitor the status of your reimbursement claims in real-time.</p>
+  </div>
+  <div class="feature">
+    <i class="fas fa-mobile-alt"></i>
+    <h3>Mobile Friendly</h3>
+    <p>Access your account and submit claims from any device, anywhere.</p>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const features = document.querySelectorAll('.feature');
+    features.forEach((feature, index) => {
+      feature.style.animationDelay = `${index * 0.2}s`;
+    });
+  });
+</script>
