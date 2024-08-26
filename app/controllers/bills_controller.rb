@@ -1,7 +1,7 @@
 class BillsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_bill, only: [:show, :edit, :update, :destroy, :approve, :reject]
-  # before_action :authorize_bill, only: [:show, :edit, :update, :destroy, :approve, :reject, :new, :create]
+  before_action :authorize_bill
   # after_action :verify_authorized, except: :index
   # after_action :verify_policy_scoped, only: :index
   before_action :authorize_creation, only: [:new, :create]
