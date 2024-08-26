@@ -122,4 +122,13 @@
     flex-basis: 100%;
     margin-bottom: 2rem;
   }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero p {
+    font-size: 1.5rem;
+  }
 }
+
