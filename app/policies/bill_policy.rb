@@ -25,6 +25,15 @@ class BillPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def approve?
+    user.admin?
+  end
+
+  def reject?
+    user.admin?
+  end
+
+
   class Scope < Scope
     def resolve
       if user.admin?

@@ -39,10 +39,15 @@
         <td><%= bill.bill_type %></td>
         <td><%= bill.status %></td>
         <td><%= bill.user.email %></td>
+        
         <% if current_user.admin? %>
-          <td>
-            <%= link_to 'Approve', approve_bill_path(bill), data: { turbo_method: :patch, turbo_confirm: "Are you sure?" } %>
-            <%= link_to 'Reject', reject_bill_path(bill), data: { turbo_method: :patch, turbo_confirm: "Are you sure?" } %>
+          <td class="action-links">
+            <%= link_to approve_bill_path(bill), class: 'action-btn approve', data: { turbo_method: :patch, turbo_confirm: "Are you sure?" } do %>
+              <i class="fas fa-check-circle"></i> Approve
+            <% end %>
+            <%= link_to reject_bill_path(bill), class: 'action-btn reject', data: { turbo_method: :patch, turbo_confirm: "Are you sure?" } do %>
+              <i class="fas fa-times-circle"></i> Reject
+            <% end %>
           </td>
         <% end %>
       </tr>
